@@ -18,7 +18,7 @@ export default class SearchBar extends Component{
                 value={this.state.searchTerm}
                 />
             </div>
-            <div>{warningMsg}</div>
+            <div style={{color: 'red', fontStyle:'italic'}}>{warningMsg}</div>
         </form>    
         </div>    
             </>);
