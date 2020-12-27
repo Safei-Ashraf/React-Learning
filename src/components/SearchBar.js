@@ -1,30 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class SearchBar extends Component{
-    state = {searchTerm: ''};
+export default class SearchBar extends React.Component{
 
-    handleSubmit = (e)=>{
-        e.preventDefault();
-        this.props.onSubmit(this.state.searchTerm);
+    state = {searchTerm : ''};
+    onInputChange = (e)=>{
+        this.setState({searchTerm: e.target.value})
     }
-    render(){
-        let warningMsg;
-        warningMsg = this.state.searchTerm.length < 3? `Search term has to be at least 3 characters long` :'';
-        return(<>
-        <div className="ui segment">
-        <form className="ui form" onSubmit={this.handleSubmit}>
-            <div className="field">
-                <label>Image Search</label>
-                <input 
-                text="search" 
-                onChange={e=>this.setState({searchTerm:e.target.value.toUpperCase()})}
-                value={this.state.searchTerm}
-                />
+    onFormSubmit = (e)=>{
+        e.preventDefault();
+        //callback from Parent Component;
+        this.setState({searchTerm : ''});
+    }
+    render() {
+        return (
+            <div className="ui segment search-bar">
+                <form className="ui form" onSubmit={this.onFormSubmit}>
+                    <div className="field">
+                        <label>Video Search</label>
+                        <input 
+                        type="text"
+                        value={this.state.searchTerm}
+                        onChange={this.onInputChange}
+                        />
+                    </div>
+                </form>            
             </div>
-            <div style={{color: 'red', fontStyle:'italic'}}>{warningMsg}</div>
-        </form>    
-        </div>    
-            </>);
+        )
     }
 }
-
