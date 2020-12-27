@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import youtube from '../apis/youtube';
+import VideoList from '../components/VideoList';
 
 class App  extends React.Component{
 
@@ -23,6 +24,7 @@ onSearchTermSubmit = async (searchTerm)=>{
             App
             <SearchBar onSearchSubmit={this.onSearchTermSubmit}/>
             We have found {this.state.videos.length} Videos!
+            <VideoList videos={this.state.videos}/>
         </div>);
         }
 }
